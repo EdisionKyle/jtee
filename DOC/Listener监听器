@@ -1,0 +1,27 @@
+监听器也叫Listener，是Servlet的监听器，它可以监听客户端的请求、服务端的操作等。通过监听器，可以自动激发一些操作，比如监听在线的用户的数量。
+
+ServletContextListener监听ServletContext对象，它能够监听 ServletContext对象的生命周期，实际上就是监听 Web 应用的生命周期。
+当Servlet 容器启动或终止Web 应用时，会触发ServletContextEvent 事件，该事件由ServletContextListener 来处理。
+在 ServletContextListener 接口中定义了处理ServletContextEvent 事件的两个方法。
+当Servlet 容器启动Web 应用时调用该方法。在调用完该方法之后，容器再对Filter 初始化， 并且对那些在Web应用启动时就需要被初始化的Servlet 进行初始化。 
+
+ServletContextAttributeListener监听对ServletContext属性的操作，比如增加、删除、修改。
+-------------------------
+HttpSessionListener监听Session对象，当创建一个Session时，激发session Created(HttpSessionEvent se)方法；
+当销毁一个Session时，激发sessionDestroyed (HttpSessionEvent se)方法。
+
+HttpSessionAttributeListener监听HttpSession中的属性的操作。当在Session增加一个属性时，激发attributeAdded(HttpSessionBindingEvent se) 方法；
+当在Session删除一个属性时，激发attributeRemoved(HttpSessionBindingEvent se)方法；
+当在Session属性被重新设置时，激发attributeReplaced(HttpSessionBindingEvent se) 方法。 
+-------------------------
+ServletRequestListener用于监听用户请求的到达，实现该接口的监听器需要实现如下两个方法。
+requestInitialized(ServletRequestEvent sre)：用户请求到底、被初始化时触发该方法。
+requestDestroyed(ServletRequestEvent sre)：用户请求结束、被销毁时触发该方法。
+
+ServletRequestAttributeListener则用于监听ServletRequest（request）范围内属性的变化，实现该接口的监听器需要实现attributeAdded、
+attributeRemoved、attributeReplaced三个方法。由此可见，ServletRequestAttributeListener与ServletContextAttributeListener的作用相似，
+都用于监听属性的改变，只是ServletRequestAttributeListener监听request范围内属性的改变，而ServletContextAttributeListener监听的是application范围内属性的改变。
+
+***********监听域对象中属性的变更的监听器***********
+http://www.cnblogs.com/xdp-gacl/p/3969249.html
+

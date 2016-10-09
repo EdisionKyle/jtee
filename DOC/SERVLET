@@ -1,0 +1,78 @@
+Servlet简介
+　　Servlet是sun公司提供的一门用于开发动态web资源的技术。是用Java编写的服务器端程序。
+　　Sun公司在其API中提供了一个servlet接口，用户若想用发一个动态web资源(即开发一个Java程序向浏览器输出数据)，需要完成以下2个步骤：
+　　1、编写一个Java类，实现servlet接口。
+　　2、把开发好的Java类部署到web服务器中。
+　　按照一种约定俗成的称呼习惯，通常我们也把实现了servlet接口的java程序，称之为Servlet，Java Server Applet
+
+javax.servlet.* ：存放与HTTP 协议无关的一般性Servlet 类；
+javax.servlet.http.* ：除了继承javax.servlet.* 之外，并且还增加与HTTP协议有关的功能。
+	所有的Servlet 都必须实现javax.servlet.Servlet 接口(Interface)。
+	若Servlet程序和HTTP 协议无关，那么必须继承javax.servlet.GenericServlet类；
+	若Servlet程序和HTTP 协议有关，那么必须继承javax.servlet.http.HttpServlet 类。
+HttpServlet ：提供了一个抽象类用来创建Http Servlet
+	public void doGet()方法：用来处理客户端发出的 GET 请求
+	public void doPost()方法：用来处理 POST请求
+javax.servlet包的接口
+	ServletConfig接口：在初始化的过程中由Servlet容器使用
+	ServletContext接口：定义Servlet用于获取来自其容器的信息的方法
+	ServletRequest接口：向服务器请求信息
+	ServletResponse接口：响应客户端请求
+javax.servlet包的类：
+	ServletInputStream类：用于从客户端读取二进制数据
+	ServletOutputStream类：用于将二进制数据发送到客户端
+javax.servlet.http包的接口：
+	HttpServletRequest接口：提供Http请求信息
+	HttpServletResponse接口：提供Http响应
+Servlet生命周期
+Servlet体系结构是建立在Java多线程机制之上的，它的生命周期是由Web容器负责的。
+Servlet生命周期就是指创建Servlet实例后，存在的时间以及何时销毁的整个过程．
+Servlet生命周期有三个方法
+	init()方法
+	service()方法：Dispatches client requests to the protected service method　
+	destroy()方法：Called by the servlet container to indicate to a servlet that the servlet is being taken out of service.
+Servlet生命周期的各个阶段
+	加载Servlet类
+	实例化：Servlet容器创建Servlet实例
+	初始化：调用init()方法
+	服务：如果有请求，调用service()方法
+	销毁：销毁实例前调用destroy()方法
+	垃圾收集：销毁实例
+
+Servlet是一个供其他Java程序（Servlet引擎）调用的Java类，它不能独立运行，它的运行完全由Servlet引擎来控制和调度。
+　　针对客户端的多次Servlet请求，通常情况下，服务器只会创建一个Servlet实例对象，也就是说Servlet实例对象一旦创建，
+它就会驻留在内存中，为后续的其它请求服务，直至web容器退出，servlet实例对象才会销毁。
+　　在Servlet的整个生命周期内，Servlet的init方法只被调用一次。而对一个Servlet的每次访问请求都导致Servlet引擎调用一次servlet的service方法。
+对于每次访问请求，Servlet引擎都会创建一个新的HttpServletRequest请求对象和一个新的HttpServletResponse响应对象，
+然后将这两个对象作为参数传递给它调用的Servlet的service()方法，service方法再根据请求方式分别调用doXXX方法。 
+
+Servlet的线程安全问题(避免使用全局变量，尽量使用局部变量)
+针对Servlet的线程安全问题，Sun公司是提供有解决方案的：让Servlet去实现一个SingleThreadModel接口，
+	如果某个Servlet实现了SingleThreadModel接口，那么Servlet引擎将以单线程模式来调用其service方法。
+查看Sevlet的API可以看到，SingleThreadModel接口中没有定义任何方法和常量，在Java中，把没有定义任何方法和常量的接口称之为标记接口，
+	经常看到的一个最典型的标记接口就是"Serializable"，这个接口也是没有定义任何方法和常量的，标记接口在Java中有什么用呢？主要作用就是给某个对象打上一个标志，
+	告诉JVM，这个对象可以做什么，比如实现了"Serializable"接口的类的对象就可以被序列化
+	让Servlet实现了SingleThreadModel接口，只要在Servlet类的定义中增加实现SingleThreadModel接口的声明即可。  
+对于实现了SingleThreadModel接口的Servlet，Servlet引擎仍然支持对该Servlet的多线程并发访问，其采用的方式是产生多个Servlet实例对象，
+	并发的每个线程分别调用一个独立的Servlet实例对象。
+实现SingleThreadModel接口并不能真正解决Servlet的线程安全问题，因为Servlet引擎会创建多个Servlet实例对象，
+	而真正意义上解决多线程安全问题是指一个Servlet实例对象被多个线程同时调用的问题。事实上，在Servlet API 2.4中，
+	已经将SingleThreadModel标记为Deprecated（过时的）。   
+
+ServletContext 线程不安全
+HttpSession 线程不安全
+ServletRequest 线程安全
+
+设计线程安全的Servlet
+1、实现 SingleThreadModel 接口
+2、同步对共享数据的操作
+3、避免使用实例变量
+对上面的三种方法进行测试，可以表明用它们都能设计出线程安全的Servlet程序。但是，如果一个Servlet实现了 SingleThreadModel接口，
+Servlet引擎将为每个新的请求创建一个单独的Servlet实例，这将引起大量的系统开销。 SingleThreadModel在Servlet2.4中已不再提倡使用；
+同样如果在程序中使用同步来保护要使用的共享的数据，也会使系统的性能大大下降。这是因为被同步的代码块在同一时刻只能有一个线程执行它，
+使得其同时处理客户请求的吞吐量降低，而且很多客户处于阻塞状态。另外为保证主存内容和线程的工作内存中的数据的一致性，要频繁地刷新缓存,
+这也会大大地影响系统的性能。所以在实际的开发中也应避免或最小化 Servlet 中的同步代码；在Serlet中避免使用实例变量是保证Servlet线程安全的最佳选择。
+从Java 内存模型也可以知道，方法中的临时变量是在栈上分配空间，而且每个线程都有自己私有的栈空间，所以它们不会影响线程的安全。
+
+
+
