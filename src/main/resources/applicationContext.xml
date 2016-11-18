@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<bean id="car" class="com.loner.ioc.Car"></bean>
-	<bean id="plane" class="com.loner.ioc.Plane"></bean>
+	<bean id="car" class="com.loner.ioc.Car">
+		<property name="uname">田鹏程</property>
+	</bean>
+
+	<bean id="plane" class="com.loner.ioc.Plane">
+		<property name="uname">万里独行</property>
+	</bean>
+
+	<bean id="brandMap" class="java.util.HashMap">
+		<map>
+			<entry key="name">
+				<value>您的梦想</value>
+			</entry>
+			<entry key="job">
+				<value>Java攻城狮</value>
+			</entry>
+		</map>
+	</bean>
+
 </beans>
 
