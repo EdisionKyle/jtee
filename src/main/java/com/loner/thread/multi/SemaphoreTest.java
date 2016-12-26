@@ -9,7 +9,7 @@ public class SemaphoreTest {
 		MyPool myPool = new MyPool(20);
 		// 创建线程池
 		ExecutorService threadPool = Executors.newFixedThreadPool(2);
-		MyThread2 t1 = new MyThread2("任务A", myPool, 3);
+		MyThread2 t1 = new MyThread2("任务A", myPool, 11);
 		MyThread2 t2 = new MyThread2("任务B", myPool, 12);
 		MyThread2 t3 = new MyThread2("任务C", myPool, 7);
 		// 在线程池中执行任务
@@ -63,6 +63,7 @@ class MyThread2 extends Thread {
 			pool.getSp().acquire(x);
 			// todo：也许这里可以做更复杂的业务
 			System.out.println(threadname + "成功获取了" + x + "个许可！");
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {

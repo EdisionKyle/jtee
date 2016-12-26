@@ -6,6 +6,9 @@
  *  Copyright (C) 2016, tianpc0318@163.com All Rights Reserved.
  */
 package com.loner.core;
+
+import java.math.BigDecimal;
+
 /**
  *  类名：CommonBase
  *  修改记录：// 修改历史记录，包括修改日期、修改者及修改内容
@@ -22,6 +25,7 @@ public class CommonBase {
 		Integer b = 10;
 		System.out.println((int)a);
 //		System.out.println(b );
+		System.out.println(BigDecimal.ZERO);
 	}
 
 }
