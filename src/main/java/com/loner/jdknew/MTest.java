@@ -1,20 +1,30 @@
 package com.loner.jdknew;
 
-import java.util.LinkedHashMap;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MTest {
 
 	public static void main(String[] args) {
 
-		Map<String, String> map = new LinkedHashMap<String, String>(16, 0.75f,
-				true);
-		map.put("a", "真爱");
-		map.put("c", "哈哈");
-		map.put("b", "逗比");
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			System.out.println(entry);
-		}
+		String str = "Hello To Java Home";
+		String[] arr =  {"a", "b", "c"};
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", "meng520");
+		int intA = 23;
+		change(str, arr, map, intA);
+		System.out.println("String==" + str);
+		System.out.println("arr==" + Arrays.toString(arr));
+		System.out.println("map==" + map);
+		System.out.println("intA==" + intA);
+	}
+
+	public static void change(String str, String[] arr, Map<String, String> map, int intA) {
+		str = "Hello To Python Home";
+		arr[0] = "FG";
+		map.put("name", "tianpc");
+		intA = 29;
 	}
 
 }
