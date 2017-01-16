@@ -181,6 +181,12 @@
 		    <version>1.10.1</version>
 		</dependency>
 
+		<!-- jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
 	</dependencies>
 	
 	<properties>
