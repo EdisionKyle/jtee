@@ -14,11 +14,11 @@ public class BankCountReadWriteLock {
 		// 创建一个线程池
 		ExecutorService pool = Executors.newFixedThreadPool(2);
 		// 创建一些并发访问用户，一个信用卡，存的存，取的取，好热闹啊
-		User1 u1 = new User1("张三", myCount, -4000, lock, false);
+		User1 u1 = new User1("张三老婆", myCount, -4000, lock, false);
 		User1 u2 = new User1("张三他爹", myCount, 6000, lock, true);
 		User1 u3 = new User1("张三他弟", myCount, -8000, lock, false);
-		User1 u4 = new User1("张三", myCount, 800, lock, false);
-		User1 u5 = new User1("张三他爹", myCount, 0, lock, true);
+		User1 u4 = new User1("张三二奶", myCount, 800, lock, false);
+		User1 u5 = new User1("张三儿子", myCount, 0, lock, true);
 		// 在线程池中执行各个用户的操作
 		pool.execute(u1);
 		pool.execute(u2);

@@ -129,9 +129,9 @@ public class MD5Util {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String encryptedPwd = MD5Util.getEncryptedPwd("@$");
+		String encryptedPwd = MD5Util.getEncryptedPwd("tianpc0405@$");
 		System.out.println(encryptedPwd);
-		System.out.println(MD5Util.validPassword("tianpc0405@$", "3D6AA8A01AF81903D1CC4448C86AE8EADF4A46459803B1AAD6A6F17F"));
+		System.out.println(MD5Util.validPassword("tianpc0405@$", "3303CF0535341B9EBB5E1FE974B814C204B68FC42FA31B156AE0DB88"));
 	}
 
 }

@@ -37,7 +37,7 @@ public class ThreadLocalTest2 {
 					for (int i = 0; i < 1000; i++) {
 						index.increase();
 					}
-					System.out.println(Thread.currentThread().getName() + " : " + index.num);
+					System.out.println(Thread.currentThread().getThreadGroup().getName() + "--" + Thread.currentThread().getName() + " : " + index.num);
 				}
 			}, "Thread-" + j);
 		}
