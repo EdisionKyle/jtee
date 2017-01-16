@@ -18,10 +18,9 @@ package com.loner.core;
 public class CommonBase {
 
 	public static void main(String[] args) {
-		Integer a = 10;
-		Integer b = 10;
-		System.out.println((int)a);
-//		System.out.println(b );
+		String a = "ABC";
+		Object b = new Object();
+		System.out.println(a.intern() == b);
 	}
 
 }

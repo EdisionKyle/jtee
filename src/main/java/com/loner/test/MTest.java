@@ -6,6 +6,8 @@ public class MTest {
 		System.out.println(Math.pow(2, 7));
 		System.out.println(Float.MIN_VALUE);
 		System.out.println(Float.MAX_VALUE);
+
+		
 	}
 
 }
