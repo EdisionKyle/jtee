@@ -3,7 +3,7 @@ package com.loner.inteview;
 import java.awt.Point;
 
 /**
- * 不可变对象
+ * 深入不可变对象
  * 
  * @author pengcheng.tian
  *
