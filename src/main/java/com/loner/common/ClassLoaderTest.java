@@ -30,6 +30,14 @@ public class ClassLoaderTest {
 		ClassLoader c2 = c1.getParent();// 获取c1这个类加载器的父类加载器
 
 		System.out.println(c2);
+		
+		int[] ia = new int[5];
+		System.out.println(ia.getClass().getClassLoader());
+		
+		Object oa = new Object[5];
+		System.out.println(oa.getClass().getClassLoader());
+		
+		System.out.println(Operation.class.getClassLoader());
 	}
 
 }
