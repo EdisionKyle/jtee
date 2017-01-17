@@ -2,7 +2,12 @@ package com.loner.inteview;
 
 import java.io.Serializable;
 
-public class Weather implements Serializable, Cloneable {
+/**
+ * @see java.lang.Object#clone
+ * @author pengcheng.tian
+ *
+ */
+public class Weather implements Serializable, Cloneable, Comparable<Weather> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +25,6 @@ public class Weather implements Serializable, Cloneable {
 		this.age = age;
 		this.addr = addr;
 	}
-
 
 	public String getName() {
 		return name;
@@ -51,10 +55,28 @@ public class Weather implements Serializable, Cloneable {
 		return super.clone();
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Weather [name=" + name + ", age=" + age + ", addr=" + addr + "]";
-//	}
+	// 比较开始
+	@Override
+	public int compareTo(Weather o) {
+		return this.age - o.getAge();
+	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		boolean flag = false;
+		if (obj instanceof Weather) {
+			Weather new_name = (Weather) obj;
+			if (this.age == new_name.getAge()) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+
+	// 比较结束
+	@Override
+	public String toString() {
+		return "Weather [name=" + name + ", age=" + age + ", addr=" + addr + "]";
+	}
+
 }
