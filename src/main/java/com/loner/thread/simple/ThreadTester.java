@@ -6,11 +6,14 @@ package com.loner.thread.simple;
  */
 public class ThreadTester {
 	public static void main(String[] args) throws InterruptedException {
-		Thread t1 = new Thread(new ThreadTesterA());
-		Thread t2 = new Thread(new ThreadTesterB());
+		ThreadGroup tg = new ThreadGroup("ThreadTester");
+		Thread t1 = new Thread(tg, new ThreadTesterA());
+		Thread t2 = new Thread(tg, new ThreadTesterB());
 		t1.start();
+		System.out.println(t1.toString());
 		t1.join(); // wait t1 to be finished 等待该线程终止
 		t2.start();
+		System.out.println(t2.toString());
 		t2.join(); // in this program, this may be removed
 	}
 }
