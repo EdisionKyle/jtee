@@ -34,7 +34,7 @@ public class HtmlParse {
 			System.out.println(e.attr("href"));
 		}
 		Element ele = doc.getElementById("btn");
-		System.out.println(ele.html());
+		System.out.println("value为：" + ele.attr("value") + "；类型为：" + ele.attr("type"));
 		System.out.println(doc.title());
 	}
 

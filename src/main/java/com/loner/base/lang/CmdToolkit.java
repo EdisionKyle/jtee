@@ -57,6 +57,7 @@ public class CmdToolkit {
 		pb.environment().put("JAVA_HOME", "C:/Java/jdk1.8.0_91");
 
 		Process ps = pb.start();
+		// 使用BufferedReader亦可
 		Scanner scanner = new Scanner(ps.getInputStream());
 		StringBuilder result = new StringBuilder();
 		while (scanner.hasNextLine()) {

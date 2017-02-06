@@ -12,14 +12,14 @@ import java.lang.reflect.Method;
  *
  */
 public class BeanInfoUtil {
-	public static void setPropertyByIntrospector(UserInfo userInfo, String userName) throws Exception {
+	public static void setPropertyByIntrospector(UserInfo userInfo, String userName, Object value) throws Exception {
 		BeanInfo beanInfo = Introspector.getBeanInfo(UserInfo.class);
 		PropertyDescriptor[] proDescrtptors = beanInfo.getPropertyDescriptors();
 		if (proDescrtptors != null && proDescrtptors.length > 0) {
 			for (PropertyDescriptor propDesc : proDescrtptors) {
 				if (propDesc.getName().equals(userName)) {
 					Method methodSetUserName = propDesc.getWriteMethod();
-					methodSetUserName.invoke(userInfo, "alan");
+					methodSetUserName.invoke(userInfo, value);
 					System.out.println("set userName:" + userInfo.getUserName());
 					break;
 				}

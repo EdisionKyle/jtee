@@ -4,7 +4,7 @@ import com.loner.base.annotation.FruitColor.Color;
 
 public class Apple {
 
-	@FruitName(vlaue = "苹果")
+	@FruitName(value = "苹果")
 	private String appleName;
 
 	@FruitColor(fruitColor = Color.GREEN)

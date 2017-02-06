@@ -16,6 +16,8 @@ public class BeanInfoTest {
 		try {
 			System.out.println(PropertyUtils.getProperty(userInfo, "userName"));
 			BeanInfoUtil.getPropertyByIntrospector(userInfo, "userName");
+			BeanInfoUtil.setPropertyByIntrospector(userInfo, "userName", "萬里獨行-milesloner520");
+			BeanInfoUtil.getPropertyByIntrospector(userInfo, "userName");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -17,6 +17,6 @@ import java.lang.annotation.Target;
 @Documented
 public @interface FruitName {
 
-	String vlaue() default "";
+	String value() default "";
 
 }

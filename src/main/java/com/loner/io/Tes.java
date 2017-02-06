@@ -19,7 +19,8 @@ public class Tes {
 	}
 
 	public static void main(String[] args) {
-		printIt((Object)null);
+		Tes.printIt((Object)null);
+		Tes.printIt("999999999999");
 		String st = "11234";
 		st = change(st);
 		System.out.println(st);
