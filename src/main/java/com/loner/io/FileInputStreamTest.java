@@ -12,7 +12,7 @@ BufferedWriter和BufferedReader能够提供缓冲区功能，用以提高效率
 其对应子类有FileInputStream和FileOutputStream实现文件读写
 BufferedInputStream和BufferedOutputStream提供缓冲区功能
  */
-public class TestFileInput {
+public class FileInputStreamTest {
 
 	public static void main(String[] args) {
 		byte[] info = new byte[9];

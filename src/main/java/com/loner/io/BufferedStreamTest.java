@@ -6,7 +6,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class BufferedStream {
+/**
+ * 使用BufferedStream实现拷贝
+ * 
+ * @author pengcheng.tian
+ *
+ */
+public class BufferedStreamTest {
 
 	public static void main(String[] args) {
 

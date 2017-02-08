@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class TestFileOutput {
+public class FileOutputStreamTest {
 
 	public static void main(String[] args) {
 		byte[] info = { 12, 34, 56, 76, 89, 54, 28, 90, 's' };

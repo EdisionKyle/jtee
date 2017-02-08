@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class TestFileWriter {
+public class FileWriterTest {
 
 	public static void main(String[] args) {
 		File f = new File("d:/test/char.txt");

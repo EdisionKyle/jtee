@@ -1,33 +1,23 @@
 package com.loner.io;
 
-import java.io.Externalizable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.util.Date;
+import java.io.Serializable;
 
-/**
- * writeExternal 和 readExternal 方法必须显式与超类型进行协调以保存其状态。
- * 这些方法将代替定制的 writeObject 和 readObject 方法实现
- * 
- * @author pengcheng.tian
- *
- */
-public class ExternalizableInfo implements Externalizable {
+public class SerializableTest implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String name;
-	private String age;
+	private transient String age;
 	private String addr;
 
-	public ExternalizableInfo() {
+	public SerializableTest() {
 		super();
 	}
 
-	public ExternalizableInfo(String name, String age, String addr) {
+	public SerializableTest(String name, String age, String addr) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -63,36 +53,13 @@ public class ExternalizableInfo implements Externalizable {
 		return "ExternalizableInfo [name=" + name + ", age=" + age + ", addr=" + addr + "]";
 	}
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		System.out.println("现在执行序列化方法");
-		// 可以在序列化时写非自身的变量
-		Date d = new Date();
-		out.writeObject(d);
-		// 只序列化userName,userPass变量
-		out.writeObject(age);
-		out.writeObject(name);
-		out.writeObject(addr);
-	}
-
-	// readExternal 方法必须按照与 writeExternal 方法写入值时使用的相同顺序和类型来读取这些值
-	@Override
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-		System.out.println("现在执行反序列化方法");
-		Date d = (Date) in.readObject();
-		System.out.println(d);
-		this.age = (String) in.readObject();
-		this.name = (String) in.readObject();
-		this.addr = (String) in.readObject();
-	}
-
 	// 序列化对象到文件
 	public static void serialize(String fileName) {
 		try {
 			// 创建一个对象输出流，讲对象输出到文件
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
 
-			ExternalizableInfo user = new ExternalizableInfo("万里独行", "29", "深圳宝安新安街道23区");
+			SerializableTest user = new SerializableTest("万里独行", "29", "深圳宝安新安街道23区");
 			out.writeObject(user); // 序列化一个会员对象
 
 			out.close();
@@ -109,7 +76,7 @@ public class ExternalizableInfo implements Externalizable {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
 
 			// 读取UserInfo对象并调用它的toString()方法
-			ExternalizableInfo user = (ExternalizableInfo) (in.readObject());
+			SerializableTest user = (SerializableTest) (in.readObject());
 			System.out.println(user.toString());
 
 			in.close();
