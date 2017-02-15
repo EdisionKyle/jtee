@@ -1,0 +1,40 @@
+package com.lib.xstream;
+/**
+ *  说明：
+ *  创建时间：2017年2月15日 下午5:55:17
+ *  Copyright (C) 2017, tianpc0318@163.com All Rights Reserved.
+ *
+ *  @version V1.0
+ *  @author milesloner
+ */
+public class Address {
+
+	private String addType;
+	private String place;
+
+	public Address(String addType, String place) {
+		this.addType = addType;
+		this.place = place;
+	}
+
+	public String getAddType() {
+		return addType;
+	}
+
+	public void setAddType(String addType) {
+		this.addType = addType;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public String toString() {
+		return "Address{" + "addType='" + addType + '\'' + ", place='" + place + '\'' + "}\n";
+	}
+
+}
